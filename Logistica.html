@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Logística</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script src="dados.js"></script>
+<script>
+    //Declaração de variáveis  
+    var precolitro = 4.10;
+    var escolha = 0;
+    var opcoes = 0;
+    var cidadeorigem = 0;
+    var cidadedestino = 0;
+    var distancia = 0;
+    var kmlitro = 2.57;
+    var custototal = 0;
+    var consultarota = 0;
+    var primeiracidade = 0;
+    var segundacidade = 0;
+    var terceiracidade = 0;
+    var distanciarota = 0;
+    var distanciareal = 0;
+    var distanciatotal = 0;
+    var custoviagem = 0;
+    var media = 283 
+    
+
+    function alterarCustoPorLitro() {
+      alert('Custo por KM é ' + precolitro);
+      // escolhe se desejar mudar o valor
+      escolha = prompt("Deseja mudar o valor do preco litro?\n" + '1. Sim\n' + '2.Nao\n');
+      if (escolha == 1) {
+        precolitro = prompt('Digite o novo preço: R$\n');
+        alert("O novo valor do preço litro é " + precolitro);
+      }
+    }
+
+    function duasCidades() {   // Função escolhida 2
+      cidadeorigem = prompt("Digite cidade de Origem:");
+
+      cidadedestino = prompt("Digite cidade de Destino:");
+      distancia = (distancias[cidadeorigem][cidadedestino]);
+      custototal = ((distancia / kmlitro) * precolitro).toFixed(2);
+      alert('A distancia entre ' + cidadeorigem + ' e ' + cidadedestino + ' é: ' + distancia + ' KM\n' + 'O custo total é R$ ' + custototal);
+    }
+
+    function tresCidades() { // Funcão escolhida 3
+      //TODO
+      primeiracidade = prompt("Digite a primeira cidade:");
+      segundacidade = prompt("Digite a segunda cidade:");
+      terceiracidade = prompt("Digite a segunda cidade:");
+      distanciarota = (distancias[primeiracidade][segundacidade]); //exibição do primeiro Alert
+      distanciareal = (distancias[segundacidade][terceiracidade]); //exibição da segunda distância do Alert
+      distanciatotal = distanciarota + distanciareal ; // exibição da distância total entre as três cidades
+      custoviagem = ((distanciatotal / kmlitro) * precolitro).toFixed(2) ; //exibição do custo total da viagem
+      media = (distanciatotal / media).toFixed(0); // exibição dos dias da viagem
+      
+      
+      // Começo do Alert 
+      alert('A distancia entre ' + primeiracidade+ ' e ' + segundacidade + ' é: ' + distanciarota + ' KM\n' +
+      'A distancia entre ' + segundacidade+ ' e ' + terceiracidade + ' é: ' + distanciareal + ' KM\n' +
+      'O distância Total é de: ' + distanciatotal + 'kM\n' +
+      'O custo total é de R$: ' + custoviagem + "\n" +
+       'A media de dias é: ' + media );
+    // Fim do Alert
+      
+    }
+
+    // Menu principal, que sera exibido //
+    function Opcoes() {
+      opcoes = prompt("=== Menu ===\n\n" + ' 1. Configurar o Custo por KM\n' + ' 2. Consultar Trecho\n' + ' 3. Consultar Rota\n' + ' 4. Sair do Programa\n');
+      switch (opcoes) {
+        case "1":
+          alterarCustoPorLitro();
+          Opcoes();
+          break;
+        case "2":
+          duasCidades();
+          Opcoes();
+          break;
+        case "3":
+          tresCidades();
+          Opcoes();
+          break;
+        case "4":
+          alert("Encerrando Programa");
+          break;
+      }
+    }
+    Opcoes();
+</script>
+  </body>
+</html>
